@@ -1,6 +1,7 @@
 from flask import Flask, request
 import db_helper
 import post
+import json
 
 db = db_helper
 app = Flask(__name__)
@@ -11,9 +12,8 @@ def views_post():
     request_message = request.query_string
     print(request_message)
 
-    db.select_post('gen')
-
-    return 'ok'
+    value = db.select_post()
+    return value
 
 
 @app.route("/post/upload", methods=["POST", "GET"])

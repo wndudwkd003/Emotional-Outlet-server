@@ -14,12 +14,12 @@ class Flags(Enum):
 flags = Flags
 
 
-def select_post(table_name):
+def select_post():
     db = pymysql.connect(host="localhost", user="root", password="gozldgkwlak0!z", charset="utf8")
     cursor = db.cursor(pymysql.cursors.DictCursor)
     cursor.execute('use emotion_db;')
 
-    cursor.execute(f'select * from {table_name} order by number desc;')
+    cursor.execute(f'select * from {flags.TABLE_POST.value} order by number desc;')
     value = cursor.fetchall()
 
     db.commit()
